@@ -1,0 +1,7 @@
+/.venv
+/__pycache__
+/plotly-cloud.toml
+/datasets
+.env
+__pycache__
+*.pyc
