@@ -7,7 +7,7 @@ def create_layout():
         dbc.NavbarSimple(brand='Дашборд оценки автомобиля', color='primary', className='car-navbar mb-3'),
         dbc.Row([
             dbc.Col([
-                dbc.Card(id='car-output', body=True)
+                dbc.Card(id='car-output', body=True, class_name='car-card')
             ], width=6, xs=12, md=6),
             
             dbc.Col([

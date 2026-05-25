@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300..700&display=swap');
+
+
+:root {
+    --bg-start: #ffffff;
+    --bg-end: #dbdbdb;
+    --surface: rgba(255, 255, 255, 0.8);
+    --text-main: #10212e;
+    --accent: #8bee00;
+    --border-soft: rgba(16, 33, 46, 0.1);
+    --shadow-soft: 0 10px 30px rgba(6, 22, 34, 0.2);
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+.car-navbar{
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+}
+
+.car-navbar.navbar {
+    margin-top: 12px;
+    padding: 12px;
+    background: linear-gradient(95deg, #6200ee, #3700b3);
+}
+
+.car-navbar .navbar-brand {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+
+.car-card, .card{
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+}
+
+.form-control{
+
+    border-radius: 8px;
+    border-color: #6200ee;
+}
+
+.form-control:focus {
+    border: 6px solid var(--accent);
+    box-shadow: 0 0 0 3px #8bee00be;
+}
+
+.dash-graph {
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: var(--shadow-soft);
+    padding: 6px;
+}
