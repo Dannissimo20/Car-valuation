@@ -1,6 +1,6 @@
 import dash_bootstrap_components as dbc
 from dash import dcc, html
-from lists import body_types, fuel_types, brands, names, transmissions, locations, colors
+from lists import body_types, fuel_types, brands, transmissions, locations, colors
 
 def create_layout():
     return dbc.Container([
@@ -44,7 +44,7 @@ def create_layout():
                              value="BMW",
                              className='form-control mb-3'),
                 dcc.Dropdown(id="name-input",
-                             options=names,
+                             options=[],
                              placeholder="Выберите модель",
                              searchable=True,
                              value="5-Series",

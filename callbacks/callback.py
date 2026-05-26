@@ -1,4 +1,5 @@
 from dash import Input, Output, State, html
+from lists import names
 from model.model import ModelWrapper
 
 model = ModelWrapper(
@@ -53,3 +54,14 @@ def register_handler(app):
             html.H5(f"Город - {location}"),
             html.H4(f"Результат - {result} ₽"),
         ])
+
+    @app.callback(
+        Output('name-input', 'options'),
+        Input('brand-input', 'value')
+    )
+    def update_model_options(selected_brand):
+        if not selected_brand:
+            return []
+
+        models = names.get(selected_brand, [])
+        return [{'label': model, 'value': model} for model in models]

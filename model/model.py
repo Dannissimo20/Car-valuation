@@ -1,9 +1,6 @@
 import joblib
 import pandas as pd
 import numpy as np
-from typing import Optional
-
-from sklearn.preprocessing import StandardScaler
 
 
 class ModelWrapper:
@@ -65,7 +62,7 @@ class ModelWrapper:
         возвращает numpy array предсказаний
         """
         X = self._prepare(data)
-        preds = self.model.predict(X)
+        preds = np.expm1(self.model.predict(X))
         return preds
 
 
