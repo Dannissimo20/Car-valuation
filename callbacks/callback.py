@@ -42,13 +42,14 @@ def register_handler(app):
         print(features)
         result = model.predict(features)
         print(result)
+
+        result = f"{round(result[0], -3):,.0f}".replace(",", " ")
         
         return html.Div([
-            html.H3(f"Стоимость для автомобиля:"),
-            html.H5(f"Марка - {brand}"),
-            html.H5(f"Модель - {name}"),
+            html.H3(f"Стоимость для автомобиля: {brand} {name}"),
             html.H5(f"Год - {year}"),
-            html.H5(f"Пробег - {mileage}"),
+            html.H5(f"Мощность - {power} л.с."),
+            html.H5(f"Пробег - {mileage} км"),
             html.H5(f"Город - {location}"),
-            html.H4(f"Результат - {result[0]} руб"),
+            html.H4(f"Результат - {result} ₽"),
         ])
