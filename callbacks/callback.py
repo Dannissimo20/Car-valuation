@@ -1,11 +1,16 @@
+import os
 from dash import Input, Output, State, html
 from lists import names
 from model.model import ModelWrapper
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 model = ModelWrapper(
-            model_path=r'C:\Code\Python\Python_Analytic\car-valuation\notebooks\xgb_regressor.joblib', 
-            maps_path=r'C:\Code\Python\Python_Analytic\car-valuation\notebooks\ord_mappings.joblib',
-            scaler_path=r'C:\Code\Python\Python_Analytic\car-valuation\notebooks\scaler.joblib'
+            model_path=os.getenv("MODEL_PATH"), 
+            maps_path=os.getenv("MAPS_PATH"),
+            scaler_path=os.getenv("SCALER_PATH")
         )
 
 def register_handler(app):
@@ -23,11 +28,7 @@ def register_handler(app):
         State('location-input', 'value'),
         State('color-input', 'value')
     )
-    def predict_price(n_clicks, year, power, mileage, bodyType, fuelType, brand, name, transmission, location, color):
-        print(f"year type - {type(year)}")
-        print(f"bodyType type - {type(bodyType)}")
-        print(f"name type - {type(name)}")
-        
+    def predict_price(n_clicks, year, power, mileage, bodyType, fuelType, brand, name, transmission, location, color):      
         features = {
             'year': year,
             'power': power,
