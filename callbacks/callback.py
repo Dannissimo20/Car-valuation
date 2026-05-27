@@ -25,10 +25,9 @@ def register_handler(app):
         State('brand-input', 'value'),
         State('name-input', 'value'),
         State('transmission-input', 'value'),
-        State('location-input', 'value'),
         State('color-input', 'value')
     )
-    def predict_price(n_clicks, year, power, mileage, bodyType, fuelType, brand, name, transmission, location, color):      
+    def predict_price(n_clicks, year, power, mileage, bodyType, fuelType, brand, name, transmission, color):      
         features = {
             'year': year,
             'power': power,
@@ -38,7 +37,6 @@ def register_handler(app):
             'name': name,
             'brand': brand,
             'transmission': transmission,
-            'location': location,
             'color': color
         }
         print(features)
@@ -52,7 +50,6 @@ def register_handler(app):
             html.H5(f"Год - {year}"),
             html.H5(f"Мощность - {power} л.с."),
             html.H5(f"Пробег - {mileage} км"),
-            html.H5(f"Город - {location}"),
             html.H4(f"Результат - {result} ₽"),
         ])
 

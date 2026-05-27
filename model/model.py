@@ -12,8 +12,7 @@ class ModelWrapper:
         "fuel_ord", 
         "name_ord", 
         "brand_ord",
-        "transmission_ord", 
-        "location_ord", 
+        "transmission_ord",
         "color_ord"
     ]
 
@@ -23,7 +22,6 @@ class ModelWrapper:
         'name_ord': 'name',
         'brand_ord': 'brand',
         'transmission_ord': 'transmission',
-        'location_ord': 'location',
         'color_ord': 'color'
     }
 

@@ -23,7 +23,6 @@ def test_prediction():
                 'name': 'Golf',
                 'brand': 'Volkswagen',
                 'transmission': 'Механика',
-                'location': 'Ростов-на-Дону',
                 'color': 'Черный'
             },
             {
@@ -35,7 +34,6 @@ def test_prediction():
                 'name': 'Golf',
                 'brand': 'Volkswagen',
                 'transmission': 'Робот',
-                'location': 'Михайловск',
                 'color': 'Красный'
             },
             {
@@ -47,7 +45,6 @@ def test_prediction():
                 'brand': 'BMW',
                 'name': '5-Series',
                 'transmission': 'Автомат',
-                'location': 'Москва',
                 'color': 'Черный'
             },
             {
@@ -59,7 +56,6 @@ def test_prediction():
                 'brand': 'Лада',
                 'name': '2107',
                 'transmission': 'Механика',
-                'location': 'Искитим',
                 'color': 'Белый'
             },
             {
@@ -71,16 +67,15 @@ def test_prediction():
                 'name': 'Гранта', 
                 'brand': 'Лада', 
                 'transmission': 'Механика', 
-                'location': 'Киров', 
                 'color': 'Серый'
             }
         ]
     )
 
-    print('Образец - [950 000, 600 000, 1 580 000, 134 000, 900 000]\n')
+    print('Образец - [950 000, 500 000, 1 580 000, 134 000, 900 000]\n')
     prediction = prediction.astype(int)
     result = "["
     for res in prediction:
         result += f"{round(res, -3):,.0f}; ".replace(",", " ")
     result += "]"
-    print(f'Отклик1 - {result}')
+    print(f'Отклик  - {result}')
