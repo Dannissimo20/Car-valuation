@@ -1,19 +1,11 @@
-import os
+from datetime import datetime
 from .model import ModelWrapper
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 def test_prediction():
-    model = ModelWrapper(
-        model_path=os.getenv("MODEL_PATH"), 
-        maps_path=os.getenv("MAPS_PATH"),
-        scaler_path=os.getenv("SCALER_PATH")
-    )
+    model = ModelWrapper()
 
-    prediction = model.predict(
-        [
+    recource = [
             {
                 'year': 2013,
                 'power': 122,
@@ -68,14 +60,48 @@ def test_prediction():
                 'brand': 'Лада', 
                 'transmission': 'Механика', 
                 'color': 'Серый'
+            },
+            {
+                'year': 2005,
+                'power': 110,
+                'mileage': 270000,
+                'bodyType': 'Седан', 
+                'fuelType': 'Бензин', 
+                'name': 'Toyota', 
+                'brand': 'Corolla', 
+                'transmission': 'Механика', 
+                'color': 'Серый'
+            },
+            {
+                'year': 2016,
+                'power': 249,
+                'mileage': 265000,
+                'bodyType': 'Седан', 
+                'fuelType': 'Бензин', 
+                'name': 'Audi', 
+                'brand': 'A6', 
+                'transmission': 'Робот', 
+                'color': 'Черный'
             }
         ]
-    )
 
-    print('Образец - [950 000, 500 000, 1 580 000, 134 000, 900 000]\n')
+    prediction = model.predict(recource)
+
+    sample = [950000, 500000, 1580000, 134000, 900000, 460000, 1900000]
+    result_lines = []
+    model_lines = f"PARAMS:\nn_estimators: {model.n_estimators}\nlearning_rate: {model.learning_rate}\nmax_depth: {model.max_depth}\nsubsample: {model.subsample}\ncolsample_bytree: {model.colsample_bytree}\nreg_alpha: {model.reg_alpha}\nreg_lambda: {model.reg_lambda}\nlower_quantile: {model.lower_quantile}\nupper_quantile: {model.upper_quantile}\n \n"
+
     prediction = prediction.astype(int)
-    result = "["
-    for res in prediction:
-        result += f"{round(res, -3):,.0f}; ".replace(",", " ")
-    result += "]"
-    print(f'Отклик  - {result}')
+
+    print("\n---------------------------------")
+    for i, (s, p) in enumerate(zip(sample, prediction)):
+        s_fmt = f"{s:,}".replace(",", " ")
+        p_fmt = f"{round(p, -3):,}".replace(",", " ")
+        line = f"{str(recource[i]['brand']).upper()} {str(recource[i]['name']).upper()} {recource[i]['year']}: образец - {s_fmt}, отклик - {p_fmt}"
+        print(line)
+        result_lines.append(line)
+    print("---------------------------------\n")
+
+    
+    with open("results.txt", "a", encoding="utf-8") as f:
+        f.write(f"{datetime.strftime(datetime.now(), '%d.%m.%Y %H:%M')}\n \n" + model_lines + "\n".join(result_lines) + "\n-------------------------------------------------------\n")

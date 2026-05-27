@@ -1,17 +1,9 @@
-import os
 from dash import Input, Output, State, html
 from lists import names
 from model.model import ModelWrapper
-from dotenv import load_dotenv
 
-load_dotenv()
+model = ModelWrapper()
 
-
-model = ModelWrapper(
-            model_path=os.getenv("MODEL_PATH"), 
-            maps_path=os.getenv("MAPS_PATH"),
-            scaler_path=os.getenv("SCALER_PATH")
-        )
 
 def register_handler(app):
     @app.callback(
@@ -52,6 +44,7 @@ def register_handler(app):
             html.H5(f"Пробег - {mileage} км"),
             html.H4(f"Результат - {result} ₽"),
         ])
+
 
     @app.callback(
         Output('name-input', 'options'),

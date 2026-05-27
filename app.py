@@ -4,15 +4,19 @@ from layouts.layout import create_layout
 # from utils.data_loader import load_data
 from callbacks import callback
 from model.test_model import test_prediction
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
 app.title = 'Оценка авто'
 app.layout = create_layout()
 
-callback.register_handler(app)
-
-test_prediction()
-
+if os.getenv("DEBUG") == 'TRUE':
+    test_prediction()
+else:
+    callback.register_handler(app)
 server = app.server
 
 if __name__ == '__main__':
