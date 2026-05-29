@@ -6,31 +6,34 @@ import xgboost as xgb
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
 
+from repo.car_repository import CarRepository
+from utils import measure_time
+
 
 class ModelWrapper:
     required_columns = [
         "year", 
         "mileage", 
         "power", 
-        "body_ord", 
-        "fuel_ord", 
-        "name_ord", 
-        "brand_ord",
+        "bodyType_ord", 
+        "fuelType_ord", 
+        "name_freq", 
+        "brand_freq",
         "transmission_ord",
         "color_ord"
     ]
 
     cat_input_map = {
-        'body_ord': 'bodyType',
-        'fuel_ord': 'fuelType',
-        'name_ord': 'name',
-        'brand_ord': 'brand',
+        'bodyType_ord': 'bodyType',
+        'fuelType_ord': 'fuelType',
+        'name_freq': 'name',
+        'brand_freq': 'brand',
         'transmission_ord': 'transmission',
         'color_ord': 'color'
     }
 
-
-    def __init__(self):
+    @measure_time
+    def __init__(self, car_repo: CarRepository):
         self.n_estimators = 500
         self.learning_rate = 0.04
         self.max_depth = 15
@@ -43,27 +46,30 @@ class ModelWrapper:
         self.lower_quantile = 0.1
         self.upper_quantile = 0.9
 
-        # Чтение из файла
-        cars = pd.read_csv(r'C:\Code\car-valuation\datasets\ml_410k.csv')
+        # Чтение данных из Postgres
+        data = car_repo.load_model_data()
+        cars = pd.DataFrame(data)
 
         # Определение категориальных признаков и способа кодирования
         self.cat_cols_ord = ['bodyType', 'fuelType', 'transmission', 'color']
         self.cat_cols_freq = ['brand', 'name']
 
-
+        # Кодирование категориальных признаков с малым количеством категорий
         enc = OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1)
-        cars['body_ord'] = enc.fit_transform(cars[['bodyType']])
-        cars['fuel_ord'] = enc.fit_transform(cars[['fuelType']])
-        cars['transmission_ord'] = enc.fit_transform(cars[['transmission']])
-        cars['color_ord'] = enc.fit_transform(cars[['color']])
+        for col in self.cat_cols_ord:
+            cars[col + '_ord'] = enc.fit_transform(cars[[col]])
+            # cars['fuel_ord'] = enc.fit_transform(cars[['fuelType']])
+            # cars['transmission_ord'] = enc.fit_transform(cars[['transmission']])
+            # cars['color_ord'] = enc.fit_transform(cars[['color']])
 
-        for col in ['brand', 'name']:
+        # Кодирование категориальных признаков с большим количеством категорий
+        for col in self.cat_cols_freq:
             freq = cars[col].value_counts()
-            cars[col + '_ord'] = cars[col].map(freq)
+            cars[col + '_freq'] = cars[col].map(freq)
 
-        cat_cols = ['bodyType', 'fuelType', 'transmission', 'color']
+        # Создание маппингов для предсказаний
         mappings = {}
-        for c in cat_cols:
+        for c in self.cat_cols_ord:
             cats = cars[c].astype(str).unique().tolist()
             mappings[c] = {cat: i for i, cat in enumerate(cats)}
         self.mappings = mappings
@@ -111,9 +117,7 @@ class ModelWrapper:
 
         # Обучение модели
         model.fit(
-            X_train, y_train_log,
-            eval_set=[(X_test, y_test)],
-            verbose=100
+            X_train, y_train_log
         )
 
         self.model = model

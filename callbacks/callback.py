@@ -2,10 +2,8 @@ from dash import Input, Output, State, html
 from lists import names
 from model.model import ModelWrapper
 
-model = ModelWrapper()
 
-
-def register_handler(app):
+def register_handler(app, model: ModelWrapper):
     @app.callback(
         Output('car-output', 'children'),
         Input('submit-button', 'n_clicks'),

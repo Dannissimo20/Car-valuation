@@ -2,9 +2,7 @@ from datetime import datetime
 from .model import ModelWrapper
 
 
-def test_prediction():
-    model = ModelWrapper()
-
+def test_prediction(model: ModelWrapper):
     recource = [
             {
                 'year': 2013,

@@ -1,5 +1,6 @@
 from dash import Dash
 import dash_bootstrap_components as dbc
+from deps import Container
 from layouts.layout import create_layout
 # from utils.data_loader import load_data
 from callbacks import callback
@@ -9,14 +10,16 @@ import os
 
 load_dotenv()
 
+container = Container()
+
 app = Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
 app.title = 'Оценка авто'
 app.layout = create_layout()
 
 if os.getenv("DEBUG") == 'TRUE':
-    test_prediction()
+    test_prediction(container.model)
 else:
-    callback.register_handler(app)
+    callback.register_handler(app, container.model)
 server = app.server
 
 if __name__ == '__main__':
