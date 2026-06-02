@@ -35,6 +35,33 @@ body {
     font-size: 1.5rem;
 }
 
+.car-tabs {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-soft);
+    border-radius: 20px;
+    padding: 12px;
+    margin-bottom: 16px;
+}
+
+.car-tabs .nav-tabs {
+   border-bottom: 0;
+   gap: 8px;
+}
+
+.car-tabs .nav-link {
+    color: #d7e7f3;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 10px 14px;
+    transition: all 0.25s ease;
+}
+
+.car-tabs .nav-link.active {
+    color: var(--text-main);
+    background: linear-gradient(140deg, #fff3e6, #ffffff);
+    box-shadow: 0 8px 20px rgba(10, 28, 42, 0.18);
+}
 
 .car-card, .card{
     background: var(--surface);
