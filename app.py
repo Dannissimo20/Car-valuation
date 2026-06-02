@@ -10,16 +10,15 @@ import os
 
 load_dotenv()
 
-container = Container()
+container = Container(os.getenv("ENV"))
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
 app.title = 'Оценка авто'
 app.layout = create_layout()
 
-if os.getenv("DEBUG") == 'TRUE':
-    test_prediction(container.model)
-else:
-    callback.register_handler(app, container.model)
+if os.getenv("ENV") == 'DEV':
+    test_prediction(container)
+callback.register_handler(app, container.model)
 server = app.server
 
 if __name__ == '__main__':

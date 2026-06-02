@@ -1,8 +1,8 @@
 from datetime import datetime
-from .model import ModelWrapper
+from deps import Container
 
 
-def test_prediction(model: ModelWrapper):
+def test_prediction(container: Container):
     recource = [
             {
                 'year': 2013,
@@ -83,11 +83,11 @@ def test_prediction(model: ModelWrapper):
             }
         ]
 
-    prediction = model.predict(recource)
+    prediction = container.model.predict(recource)
 
     sample = [950000, 500000, 1580000, 134000, 900000, 460000, 1900000]
     result_lines = []
-    model_lines = f"PARAMS:\nn_estimators: {model.n_estimators}\nlearning_rate: {model.learning_rate}\nmax_depth: {model.max_depth}\nsubsample: {model.subsample}\ncolsample_bytree: {model.colsample_bytree}\nreg_alpha: {model.reg_alpha}\nreg_lambda: {model.reg_lambda}\nlower_quantile: {model.lower_quantile}\nupper_quantile: {model.upper_quantile}\n \n"
+    model_lines = f"PARAMS:\nn_estimators: {container.fitter.n_estimators}\nlearning_rate: {container.fitter.learning_rate}\nmax_depth: {container.fitter.max_depth}\nsubsample: {container.fitter.subsample}\ncolsample_bytree: {container.fitter.colsample_bytree}\nreg_alpha: {container.fitter.reg_alpha}\nreg_lambda: {container.fitter.reg_lambda}\nlower_quantile: {container.fitter.lower_quantile}\nupper_quantile: {container.fitter.upper_quantile}\n \n"
 
     prediction = prediction.astype(int)
 
