@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 from deps import Container
 from layouts.layout import create_layout
 # from utils.data_loader import load_data
-from callbacks import callback
+from callbacks import callback, hist_callback
 from model.test_model import test_prediction
 from dotenv import load_dotenv
 import os
@@ -19,6 +19,7 @@ app.layout = create_layout()
 if os.getenv("ENV") == 'DEV':
     test_prediction(container)
 callback.register_handler(app, container.model)
+hist_callback.register_handler(app, container.car_hist_repo)
 server = app.server
 
 if __name__ == '__main__':

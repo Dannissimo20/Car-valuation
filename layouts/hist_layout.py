@@ -1,6 +1,5 @@
 import dash_bootstrap_components as dbc
 from dash import dcc, html
-from lists import body_types, fuel_types, brands, transmissions, colors
 
 
 def get_hist_layout():
@@ -8,7 +7,8 @@ def get_hist_layout():
         dbc.Row(
             [
                 dbc.Col(
-                    html.H4("График по пользовательским параметрам"),
+                    # html.H4("График по пользовательским параметрам"),
+                    dbc.Card(id="car-hist-output", body=True),
                     width=6,
                     xs=12,
                     md=6,

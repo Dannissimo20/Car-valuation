@@ -7,6 +7,7 @@ from sqlalchemy import pool
 from alembic import context
 
 from database.models.car_model import CarModel
+from database.models.car_hist_model import CarHistModel
 from database.database import Base
 
 from dotenv import load_dotenv
