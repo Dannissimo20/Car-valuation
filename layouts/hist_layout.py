@@ -7,8 +7,7 @@ def get_hist_layout():
         dbc.Row(
             [
                 dbc.Col(
-                    # html.H4("График по пользовательским параметрам"),
-                    dbc.Card(id="car-hist-output", body=True),
+                    html.H4("График по пользовательским параметрам"),
                     width=6,
                     xs=12,
                     md=6,
@@ -26,9 +25,8 @@ def get_hist_layout():
             [
                 dbc.Col(
                     dcc.Graph(id='avg-brand-price-graph'),
-                    width=6,
+                    width=12,
                     xs=12,
-                    md=6,
                 )
             ],
             className="mb-3",

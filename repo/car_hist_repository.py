@@ -9,7 +9,7 @@ class CarHistRepository:
     def __init__(self, db: DBWriter):
         self.db = db
 
-    def __get_top_brands(self):
+    def _get_top_brands(self):
         query = (
             select(CarHistModel.marka)
             .group_by(CarHistModel.marka)
@@ -22,7 +22,7 @@ class CarHistRepository:
         return top_brands
 
     def get_top_brands_mean_price_in_time(self):
-        top_brands = self.__get_top_brands()
+        top_brands = self._get_top_brands()
         query = (
             select(
                 func.date_trunc('month', CarHistModel.date_posted).label('month'),
