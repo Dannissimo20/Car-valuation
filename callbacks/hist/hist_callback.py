@@ -3,6 +3,7 @@ import json
 from dash import Output, html, Input
 import pandas as pd
 import plotly.graph_objects as go
+from assets.graph_style import apply_theme
 from utils import measure_time
 
 def register_handler(app):
@@ -58,4 +59,4 @@ def register_handler(app):
         ])
 
         
-        return brands_fig, models_top_ru, models_top_non_ru
+        return apply_theme(brands_fig), models_top_ru, models_top_non_ru

@@ -3,6 +3,7 @@ import json
 from dash import Output, Input
 import pandas as pd
 import plotly.graph_objects as go
+from assets.graph_style import apply_theme
 from utils import measure_time
 from lists import hist_models
 
@@ -39,7 +40,7 @@ def register_handler(app):
             template='ggplot2'
         )
 
-        return  model_fig, cars_count,
+        return  apply_theme(model_fig), cars_count,
 
     @app.callback(
         Output('model-hist-input', 'options'),
