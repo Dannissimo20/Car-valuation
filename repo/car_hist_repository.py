@@ -73,11 +73,12 @@ class CarHistRepository:
 
         query = (
             select(
+                CarHistModel.marka,
                 CarHistModel.model,
                 car_count
             )
             .where(CarHistModel.marka == 'Лада')
-            .group_by(CarHistModel.model)
+            .group_by(CarHistModel.model, CarHistModel.marka,)
             .order_by(car_count.desc())
             .limit(5)
         )
@@ -85,7 +86,7 @@ class CarHistRepository:
         with self.db.get_session() as session:
             top_ru_models = session.execute(query).all()
         
-        return pd.DataFrame(top_ru_models, columns=['model', 'car_count'])
+        return pd.DataFrame(top_ru_models, columns=['marka', 'model', 'car_count'])
     
 
     @measure_time
@@ -94,11 +95,12 @@ class CarHistRepository:
 
         query = (
             select(
+                CarHistModel.marka,
                 CarHistModel.model,
                 car_count
             )
             .where(CarHistModel.marka != 'Лада')
-            .group_by(CarHistModel.model)
+            .group_by(CarHistModel.model, CarHistModel.marka,)
             .order_by(car_count.desc())
             .limit(5)
         )
@@ -106,5 +108,5 @@ class CarHistRepository:
         with self.db.get_session() as session:
             top_ru_models = session.execute(query).all()
         
-        return pd.DataFrame(top_ru_models, columns=['model', 'car_count'])
+        return pd.DataFrame(top_ru_models, columns=['marka', 'model', 'car_count'])
 

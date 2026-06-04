@@ -36,24 +36,23 @@ def register_handler(app):
             )
         
         brands_fig.update_layout(
-            title='Изменение средней стоимости 5 самых продаваемых автомобилей',
+            title='Изменение средней стоимости 5 самых популярных брендов',
             xaxis_title='Месяц',
-            yaxis_title='Средняя цена',
-            template='ggplot2'
+            yaxis_title='Средняя цена, ₽'
         )
 
         models_top_ru = html.Div([
-            html.H3("Самые популярные модели российские"),
+            html.H3("Самые популярные модели российских марок"),
             *[
-                html.H5(f"{row['model']}: {row['car_count']}")
+                html.H5(f"{row['marka']} {row['model']}: {row['car_count']} шт.")
                 for _, row in top_ru_models.iterrows()
             ]
         ])
 
         models_top_non_ru = html.Div([
-            html.H3("Самые популярные модели иномарок"),
+            html.H3("Самые популярные модели иностранных марок"),
             *[
-                html.H5(f"{row['model']}: {row['car_count']}")
+                html.H5(f"{row['marka']} {row['model']}: {row['car_count']} шт.")
                 for _, row in top_non_ru_models.iterrows()
             ]
         ])

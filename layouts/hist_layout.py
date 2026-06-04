@@ -12,7 +12,7 @@ def get_hist_layout():
                 dbc.Col(
                     [
                         dbc.Row(dcc.Graph(id="avg-model-price-graph")),
-                        dbc.Row(html.H6(id="cars_count")),
+                        dbc.Row(html.H6(id="cars_count"), class_name='mb-3'),
                     ],
                     width=6,
                     xs=12,

@@ -36,8 +36,7 @@ def register_handler(app):
         model_fig.update_layout(
             title=f'Изменение средней стоимости {marka} {model}',
             xaxis_title='Месяц',
-            yaxis_title='Средняя цена',
-            template='ggplot2'
+            yaxis_title='Средняя цена'
         )
 
         return  apply_theme(model_fig), cars_count,
