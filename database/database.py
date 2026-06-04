@@ -12,7 +12,12 @@ Base = declarative_base()
 
 class DBWriter:
     def __init__(self, db_url: str | None = None):
-        self.engine = create_engine(db_url or PG_DSN)
+        self.engine = create_engine(
+            db_url or PG_DSN,
+            pool_size=20,
+            max_overflow=20,
+            pool_timeout=60
+        )
         self.SessionLocal = sessionmaker(bind=self.engine, autoflush=False, autocommit=False)
 
     @contextmanager
