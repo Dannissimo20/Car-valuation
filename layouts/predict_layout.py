@@ -15,6 +15,7 @@ def get_predict_layout():
             dbc.Col(
                 [
                     html.H5("Введите параметры автомобиля"),
+                    html.H6("Год выпуска"),
                     dbc.Input(
                         id="year-input",
                         placeholder="Введите год выпуска",
@@ -22,6 +23,7 @@ def get_predict_layout():
                         value=2016,
                         class_name="mb-3",
                     ),
+                    html.H6("Мощность двигателя (л.с)"),
                     dbc.Input(
                         id="power-input",
                         placeholder="Введите мощность двигателя (л.с)",
@@ -29,6 +31,7 @@ def get_predict_layout():
                         value=184,
                         class_name="mb-3",
                     ),
+                    html.H6("Пробег (км)"),
                     dbc.Input(
                         id="mileage-input",
                         placeholder="Введите пробег (км)",
@@ -36,6 +39,7 @@ def get_predict_layout():
                         value=165507,
                         class_name="mb-3",
                     ),
+                    html.H6("Тип кузова"),
                     dcc.Dropdown(
                         id="body-type-input",
                         options=body_types,
@@ -44,6 +48,7 @@ def get_predict_layout():
                         value="Седан",
                         className="form-control mb-3",
                     ),
+                    html.H6("Тип топлива"),
                     dcc.Dropdown(
                         id="fuel-type-input",
                         options=fuel_types,
@@ -52,6 +57,7 @@ def get_predict_layout():
                         value="Бензин",
                         className="form-control mb-3",
                     ),
+                    html.H6("Марка"),
                     dcc.Dropdown(
                         id="brand-input",
                         options=brands,
@@ -61,6 +67,7 @@ def get_predict_layout():
                         maxHeight=400,
                         className="form-control mb-3",
                     ),
+                    html.H6("Модель"),
                     dcc.Dropdown(
                         id="name-input",
                         options=[],
@@ -70,6 +77,7 @@ def get_predict_layout():
                         maxHeight=400,
                         className="form-control mb-3",
                     ),
+                    html.H6("Тип трансмиссии"),
                     dcc.Dropdown(
                         id="transmission-input",
                         options=transmissions,
@@ -78,6 +86,7 @@ def get_predict_layout():
                         value="АКПП",
                         className="form-control mb-3",
                     ),
+                    html.H6("Цвет"),
                     dcc.Dropdown(
                         id="color-input",
                         options=colors,
