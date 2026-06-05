@@ -20,6 +20,7 @@ def get_hist_layout():
                 ),
                 dbc.Col(
                     [
+                        html.H6("Марка"),
                         dcc.Dropdown(
                             id="brand-hist-input",
                             options=hist_brands,
@@ -29,6 +30,7 @@ def get_hist_layout():
                             value="Volkswagen",
                             className="form-control mb-3",
                         ),
+                        html.H6("Модель"),
                         dcc.Dropdown(
                             id="model-hist-input",
                             options=hist_models,
@@ -38,6 +40,7 @@ def get_hist_layout():
                             value="Golf",
                             className="form-control mb-3",
                         ),
+                        html.H6("Поколение"),
                         dcc.Dropdown(
                             id="generation-hist-input",
                             options=hist_models,
