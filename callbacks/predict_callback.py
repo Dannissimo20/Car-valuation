@@ -40,6 +40,7 @@ def register_handler(app, model: ModelWrapper):
             html.H5(f"Год - {year}"),
             html.H5(f"Мощность - {power} л.с."),
             html.H5(f"Пробег - {mileage} км"),
+            html.Div(className="divider"),
             html.H4(f"Результат - {result} ₽"),
         ])
 

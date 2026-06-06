@@ -13,7 +13,7 @@ load_dotenv()
 
 container = Container(os.getenv("ENV"))
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
+app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 app.title = 'Оценка авто'
 app.layout = create_layout()
 

@@ -21,7 +21,7 @@ def get_predict_layout():
                         placeholder="Введите год выпуска",
                         type="number",
                         value=2016,
-                        class_name="mb-3",
+                        class_name="input",
                     ),
                     html.H6("Мощность двигателя (л.с)"),
                     dbc.Input(
@@ -29,7 +29,7 @@ def get_predict_layout():
                         placeholder="Введите мощность двигателя (л.с)",
                         type="number",
                         value=184,
-                        class_name="mb-3",
+                        class_name="input",
                     ),
                     html.H6("Пробег (км)"),
                     dbc.Input(
@@ -37,7 +37,7 @@ def get_predict_layout():
                         placeholder="Введите пробег (км)",
                         type="number",
                         value=165507,
-                        class_name="mb-3",
+                        class_name="input",
                     ),
                     html.H6("Тип кузова"),
                     dcc.Dropdown(
@@ -46,7 +46,7 @@ def get_predict_layout():
                         placeholder="Выберите тип кузова",
                         searchable=False,
                         value="Седан",
-                        className="form-control mb-3",
+                        className="form-control input dropdown",
                     ),
                     html.H6("Тип топлива"),
                     dcc.Dropdown(
@@ -55,7 +55,7 @@ def get_predict_layout():
                         placeholder="Выберите тип топлива",
                         searchable=False,
                         value="Бензин",
-                        className="form-control mb-3",
+                        className="form-control input dropdown",
                     ),
                     html.H6("Марка"),
                     dcc.Dropdown(
@@ -65,7 +65,7 @@ def get_predict_layout():
                         searchable=True,
                         value="BMW",
                         maxHeight=400,
-                        className="form-control mb-3",
+                        className="form-control input dropdown",
                     ),
                     html.H6("Модель"),
                     dcc.Dropdown(
@@ -75,7 +75,7 @@ def get_predict_layout():
                         searchable=True,
                         value="5-Series",
                         maxHeight=400,
-                        className="form-control mb-3",
+                        className="form-control input dropdown",
                     ),
                     html.H6("Тип трансмиссии"),
                     dcc.Dropdown(
@@ -84,7 +84,7 @@ def get_predict_layout():
                         placeholder="Выберите тип трансмиссии",
                         searchable=False,
                         value="АКПП",
-                        className="form-control mb-3",
+                        className="form-control input dropdown",
                     ),
                     html.H6("Цвет"),
                     dcc.Dropdown(
@@ -93,10 +93,16 @@ def get_predict_layout():
                         placeholder="Выберите цвет",
                         searchable=True,
                         value="Черный",
-                        className="form-control mb-3",
+                        className="form-control input dropdown",\
+                        style={"marginBottom": "10px"}
                     ),
-                    html.Button("Подтвердить", id="submit-button"),
+                    html.Button("Подтвердить", id="submit-button", className="default-button"),
                 ],
+                style={
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "gap": "6px",
+                },
                 width=6,
                 xs=12,
                 md=6,
